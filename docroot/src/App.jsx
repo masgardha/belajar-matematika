@@ -1,11 +1,18 @@
 import './App.css'
-import SelectGame from './components/select-game/SelectGame'
+import RenderPage from './RenderPage'
+import { useState } from 'react'
 
 function App() {
+  const [view, setView] = useState('mainMenu')
+  const appState = {
+    'view': view,
+    'setView': setView,
+  }
+
+  console.log(view)
+
   return (
-    <>
-      <SelectGame />
-    </>
+     <RenderPage appState={appState} />
   )
 }
 

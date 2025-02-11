@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Penjumlahan(props) {
     const [jumlahSoal, setJumlahSoal] = useState(1)  // Mulai dengan 1 soal
     const [point, setPoint] = useState(0)
     const [soal, setSoal] = useState(generateSoal())  // Soal pertama
     const [jawaban, setJawaban] = useState(generateJawaban(soal))  // Jawaban pertama
+    const [timeLeft, setTimeLeft] = useState(5 * 60)  // Timer 20 menit dalam detik
+    const [isTimeUp, setIsTimeUp] = useState(false)  // Untuk mengecek apakah waktu sudah habis
 
     // Fungsi untuk generate soal penjumlahan acak
     function generateSoal() {
@@ -40,39 +42,96 @@ export default function Penjumlahan(props) {
         setJawaban(generateJawaban(newSoal))
     }
 
+    // Timer countdown effect
+    useEffect(() => {
+        if (isTimeUp) return; // Jika waktu sudah habis, stop timer
+        const timer = setInterval(() => {
+            setTimeLeft((prevTime) => {
+                if (prevTime <= 1) {
+                    clearInterval(timer)
+                    setIsTimeUp(true)  // Set waktu habis
+                    return 0
+                }
+                return prevTime - 1
+            })
+        }, 1000)
+
+        return () => clearInterval(timer)
+    }, [isTimeUp])  // Timer effect hanya dijalankan jika isTimeUp belum true
+
     function exit () {
         props.setView('mainMenu')
     }
 
-    return(
+    // Fungsi untuk format waktu (menit:detik)
+    function formatTime(time) {
+        const minutes = Math.floor(time / 60)
+        const seconds = time % 60
+        return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+    }
+
+    // Menghitung persentase waktu yang tersisa
+    const progress = (timeLeft / (5 * 60)) * 100;
+
+    return (
         <div className="container mt-4">
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <button className="btn btn-danger" onClick={exit}>Exit</button>
 
                 <div>
-                    <span className="h5">Jumlah Soal: {jumlahSoal}</span> | 
+                    <span className="h5">Soal ke: {jumlahSoal}</span> | 
                     <span className="h5">Point: {point}</span>
                 </div>
             </div>
 
-            {/* Soal */}
-            <div className="text-center mb-4">
-                <h3>Soal:</h3>
-                <div className="h1">{soal.angka1} + {soal.angka2} = ?</div>
+            {/* Progress Bar Timer */}
+            {!isTimeUp && (
+                <div className="mb-4">
+                    <div className="d-flex gap-2 align-items-center">
+                    <span>Timer</span>
+                    <progress
+                        className="w-100"
+                        value={progress}
+                        max="100"
+                        style={{ height: "10px" }}
+                    ></progress>
+                    </div>
+                   
+                </div>
+            )}
+
+            {/* Waktu dalam format menit:detik */}
+            <div className="text-center mb-4 d-none">
+                <h3>Waktu: {formatTime(timeLeft)}</h3>
             </div>
 
-            {/* Pilihan Jawaban */}
-            <div className="row row-cols-1 row-cols-md-3 g-4">
-                {jawaban.map((jawabanPilihan, index) => (
-                    <div key={index} className="col">
-                        <div className="card shadow-sm bg-primary text-white" onClick={() => handleJawaban(jawabanPilihan)}>
-                            <div className="card-body text-center">
-                                <h2 className="card-title fw-bold">{jawabanPilihan}</h2>
-                            </div>
-                        </div>
+            {/* Soal */}
+            {!isTimeUp ? (
+                <>
+                    <div className="text-center pb-4">
+                        <div className="h1 fw-bold soal mb-0">{soal.angka1} + {soal.angka2} = ?</div>
                     </div>
-                ))}
-            </div>
+
+                    {/* Pilihan Jawaban */}
+                    <div className="row pt-4">
+                        {jawaban.map((jawabanPilihan, index) => (
+                            <div key={index} className="col-4">
+                                <div className="card shadow-sm bg-primary text-white" onClick={() => handleJawaban(jawabanPilihan)}>
+                                    <div className="card-body text-center">
+                                        <h2 className="card-title fw-bold mb-0">{jawabanPilihan}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            ) : (
+                // Tampilkan skor jika waktu habis
+                <div className="text-center">
+                    <h2>Waktu Habis!</h2>
+                    <h3>Skor Anda: {point}</h3>
+                </div>
+            )}
         </div>
     )
 }

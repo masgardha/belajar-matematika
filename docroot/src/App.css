@@ -3,4 +3,8 @@
 #root {
     max-width: 750px;
     margin: auto;
+
+    .soal {
+        font-size: 50px;
+    }
 }

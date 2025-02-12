@@ -1,3 +1,4 @@
+import Acak from "./components/acak/Acak"
 import Pengurangan from "./components/pengurangan/pengurangan"
 import Penjumlahan from "./components/penjumlahan/Penjumlahan"
 import SelectGame from "./components/select-game/SelectGame"
@@ -17,6 +18,11 @@ export default function RenderPage(props) {
         return (
             <Pengurangan setView={props.appState.setView} />
         )
+    } else if (props.appState.view === 'acak') {
+        return (
+            <Acak setView={props.appState.setView} />
+        )
     }
+
 }
 

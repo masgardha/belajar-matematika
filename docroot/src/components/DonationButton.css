@@ -1,0 +1,90 @@
+/* Donation button styles - reusable across components */
+.donation-button {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.donation-button:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+    transform: translateY(-2px);
+}
+
+.donation-button:active {
+    transform: translateY(0);
+}
+
+/* Heart animation */
+.donation-button::before {
+    content: '💖';
+    display: inline-block;
+    animation: heartBeat 1.5s ease-in-out infinite;
+    margin-right: 6px;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Donation section styles */
+.donation-section {
+    background: linear-gradient(135deg, #fef3c7 0%, #ffedd5 100%);
+    border: 1px solid #fbbf24;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.donation-section h3 {
+    color: #92400e;
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+
+.donation-section p {
+    color: #b45309;
+    font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .donation-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .donation-section {
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+    }
+    
+    .donation-section h3 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .donation-button {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .donation-section {
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .donation-button::before {
+        margin-right: 4px;
+        font-size: 0.875rem;
+    }
+}

@@ -9,8 +9,6 @@ function App() {
     'setView': setView,
   }
 
-  console.log(view)
-
   return (
      <RenderPage appState={appState} />
   )

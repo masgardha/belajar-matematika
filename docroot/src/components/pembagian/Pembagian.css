@@ -1,0 +1,261 @@
+.pembagian-container {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif;
+}
+
+.division-visual div div {
+    animation: circlePop 0.5s ease-out;
+}
+
+@keyframes circlePop {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.group-container {
+    transition: all 0.3s ease;
+}
+
+.group-container:hover {
+    transform: translateY(-3px);
+}
+
+.answer-input {
+    transition: all 0.3s ease;
+}
+
+.answer-input:focus {
+    transform: scale(1.05);
+}
+
+.check-button:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hint-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.feedback {
+    animation: feedbackPop 0.5s ease;
+}
+
+@keyframes feedbackPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.timer-card, .score-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.timer-card:hover, .score-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(147, 51, 234, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pembagian-container {
+        padding: 0.5rem;
+    }
+    
+    .max-w-6xl {
+        max-width: 100%;
+    }
+    
+    .text-3xl, .text-4xl {
+        font-size: 1.5rem;
+    }
+    
+    .text-2xl {
+        font-size: 1.2rem;
+    }
+    
+    .text-xl {
+        font-size: 1rem;
+    }
+    
+    .division-visual .w-8, .division-visual .w-6 {
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    .answer-input {
+        width: 4rem;
+        height: 3rem;
+        font-size: 1.5rem;
+    }
+    
+    .check-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .bg-white.p-8 {
+        padding: 1rem;
+    }
+    
+    .text-5xl {
+        font-size: 2rem;
+    }
+    
+    .text-6xl {
+        font-size: 2.5rem;
+    }
+    
+    .text-4xl {
+        font-size: 1.8rem;
+    }
+    
+    .space-y-6 > * + * {
+        margin-top: 0.5rem;
+    }
+    
+    .p-6 {
+        padding: 0.75rem;
+    }
+    
+    .p-8 {
+        padding: 1rem;
+    }
+    
+    .mb-8 {
+        margin-bottom: 0.5rem;
+    }
+    
+    .gap-8 {
+        gap: 0.5rem;
+    }
+    
+    .flex.flex-wrap.gap-2 {
+        gap: 0.1rem;
+    }
+    
+    .flex.flex-wrap.gap-4 {
+        gap: 0.5rem;
+    }
+    
+    .group-container {
+        margin-bottom: 0.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-3xl, .text-4xl {
+        font-size: 1.2rem;
+    }
+    
+    .division-visual .w-8, .division-visual .w-6 {
+        width: 0.75rem;
+        height: 0.75rem;
+    }
+    
+    .answer-input {
+        width: 3rem;
+        height: 2.5rem;
+        font-size: 1.2rem;
+    }
+    
+    .grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+    
+    .text-center h1 {
+        font-size: 1.5rem;
+    }
+    
+    .flex.flex-col.md\:flex-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .flex.gap-4 {
+        gap: 0.5rem;
+    }
+    
+    .grid.grid-cols-2.gap-3 {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+}
+
+/* Ensure content fits in one screen on mobile */
+@media (max-height: 800px) and (max-width: 768px) {
+    .pembagian-container {
+        min-height: 100vh;
+        overflow-y: auto;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+    
+    .grid.grid-cols-1.lg\:grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+    
+    .space-y-6 {
+        margin-top: 0.25rem;
+    }
+    
+    .space-y-6 > * + * {
+        margin-top: 0.25rem;
+    }
+    
+    .mb-8 {
+        margin-bottom: 0.25rem;
+    }
+    
+    .p-8 {
+        padding: 0.75rem;
+    }
+    
+    .text-center.mb-6 {
+        margin-bottom: 0.25rem;
+    }
+    
+    .division-visual.mb-8 {
+        margin-bottom: 0.25rem;
+    }
+    
+    .answer-input-section {
+        margin-top: 0.25rem;
+    }
+    
+    .mt-6 {
+        margin-top: 0.25rem;
+    }
+    
+    .division-visual .flex.flex-wrap.justify-center.gap-2 {
+        gap: 0.05rem;
+    }
+    
+    .division-visual .flex.flex-wrap.justify-center.gap-4 {
+        gap: 0.25rem;
+    }
+}

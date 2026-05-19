@@ -1,0 +1,236 @@
+.select-game-container {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif;
+}
+
+.floating-element {
+    opacity: 0.3;
+    animation: floatAround 20s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-element.number {
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+.floating-element.symbol {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+@keyframes floatAround {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(20px, -20px) rotate(90deg);
+    }
+    50% {
+        transform: translate(0, -40px) rotate(180deg);
+    }
+    75% {
+        transform: translate(-20px, -20px) rotate(270deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+
+.game-card {
+    cursor: pointer;
+    border: 4px solid transparent;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.game-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.game-card.clicked {
+    animation: cardClick 0.3s ease;
+}
+
+@keyframes cardClick {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.play-button {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.game-card:hover .play-button {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+.character-container {
+    animation: characterFloat 3s ease-in-out infinite;
+}
+
+@keyframes characterFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .select-game-container {
+        padding: 0.5rem;
+    }
+    
+    .header-section {
+        padding: 1rem 0.5rem;
+    }
+    
+    .header-section h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+    
+    .header-section p {
+        font-size: 0.9rem;
+    }
+    
+    .character-container .w-24 {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+    
+    .character-container .text-4xl {
+        font-size: 2rem;
+    }
+    
+    .game-cards-section {
+        padding: 0.5rem;
+    }
+    
+    .game-card {
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .game-card .w-20 {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .game-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .game-card p {
+        font-size: 0.8rem;
+    }
+    
+    .play-button {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .footer-section {
+        padding: 0.5rem;
+    }
+    
+    .footer-section .text-3xl {
+        font-size: 1.5rem;
+    }
+    
+    .footer-section p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-section h1 {
+        font-size: 1.5rem;
+    }
+    
+    .game-card {
+        padding: 0.75rem;
+    }
+    
+    .game-card h3 {
+        font-size: 1rem;
+    }
+    
+    .grid-cols-1 {
+        gap: 0.5rem;
+    }
+    
+    .floating-element {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* Add some fun cursor effects */
+.game-card:hover::after {
+    content: '🎮';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 1.5rem;
+    animation: emojiPop 0.5s ease;
+}
+
+@keyframes emojiPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Donation button styles */
+.donation-button {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+}
+
+.donation-button:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+}
+
+.donation-button:active {
+    transform: translateY(0);
+}
+
+/* Heart animation */
+.donation-button::before {
+    content: '💖';
+    display: inline-block;
+    animation: heartBeat 1.5s ease-in-out infinite;
+    margin-right: 8px;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
